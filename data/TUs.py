@@ -20,6 +20,23 @@ from sklearn.model_selection import StratifiedKFold, train_test_split
 import csv
 
 
+def format_dataset(dataset):  
+    """
+        Utility function to recover data,
+        INTO-> dgl/pytorch compatible format 
+    """
+    graphs = [data[0] for data in dataset]
+    labels = [data[1] for data in dataset]
+
+    for graph in graphs:
+        #graph.ndata['feat'] = torch.FloatTensor(graph.ndata['feat'])
+        graph.ndata['feat'] = graph.ndata['feat'].float() # dgl 4.0
+        # adding edge features for Residual Gated ConvNet, if not there
+        if 'feat' not in graph.edata.keys():
+            edge_feat_dim = graph.ndata['feat'].shape[1] # dim same as node feature dim
+            graph.edata['feat'] = torch.ones(graph.number_of_edges(), edge_feat_dim)
+
+    return DGLFormDataset(graphs, labels)
 
 
 def get_all_split_idx(dataset):
