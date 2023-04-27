@@ -64,10 +64,11 @@ tensorboard --logdir='./' --port 6006
 
 
 #### 2.3 To see the training logs in Tensorboard on remote machine
-1. Move this [script](../scripts/TensorBoard/script_tensorboard.sh) to the root of the repository, i.e. benchmarking-gnns/.
-2. Run the script `bash script_tensorboard.sh`.
-3. On your local machine, run the command `ssh -N -f -L localhost:6006:localhost:6006 user@xx.xx.xx.xx`.
-4. Open `http://localhost:6006` in your browser. Note that `user@xx.xx.xx.xx` corresponds to your user login and the IP of the remote machine.
+1. Move this [script](../scripts/TensorBoard/script_tensorboard.sh) to the root of the repository, i.e. benchmarking-gnns/.
+2. Run the script `bash script_tensorboard.sh`.
+3. On your local machine, run the command `ssh -N -f -L localhost:6006:localhost:6006 user@xx.xx.xx.xx`.
+4. Open `http://localhost:6006` in your browser. Note that `user@xx.xx.xx.xx` corresponds to your user login and the IP of the remote machine.
+
 
 
 <br>
@@ -86,6 +87,12 @@ bash scripts/ZINC/script_main_molecules_graph_regression_ZINC_100k.sh # run ZINC
 bash scripts/ZINC/script_main_molecules_graph_regression_ZINC_500k.sh # run ZINC dataset for 500k params
 bash scripts/ZINC/script_main_molecules_graph_regression_ZINC_PE_GatedGCN_500k.sh # run ZINC dataset with PE for GatedGCN
 
+bash scripts/AQSOL/script_main_molecules_graph_regression_AQSOL_100k.sh # run AQSOL dataset for 100k params
+bash scripts/AQSOL/script_main_molecules_graph_regression_AQSOL_500k.sh # run AQSOL dataset for 500k params
+bash scripts/AQSOL/script_main_molecules_graph_regression_AQSOL_PE_GatedGCN_500k.sh # run AQSOL dataset with PE for GatedGCN
+
+bash scripts/WikiCS/script_main_WikiCS_node_classification_100k.sh # run WikiCS dataset for 100k params
+
 bash scripts/SBMs/script_main_SBMs_node_classification_PATTERN_100k.sh # run PATTERN dataset for 100k params
 bash scripts/SBMs/script_main_SBMs_node_classification_PATTERN_500k.sh # run PATTERN dataset for 500k params
 bash scripts/SBMs/script_main_SBMs_node_classification_PATTERN_PE_GatedGCN_500k.sh # run PATTERN dataset with PE for GatedGCN
@@ -102,6 +109,10 @@ bash scripts/COLLAB/script_main_COLLAB_edge_classification_PE_GatedGCN_40k.sh # 
 
 bash scripts/CSL/script_main_CSL_graph_classification_20_seeds.sh # run CSL dataset without node features on 20 seeds
 bash scripts/CSL/script_main_CSL_graph_classification_PE_20_seeds.sh # run CSL dataset with PE on 20 seeds
+
+bash scripts/GraphTheoryProp/script_main_GraphTheoryProp_multitask_100k.sh # run GraphTheoryProp dataset for 100k params
+
+bash scripts/CYCLES/script_main_CYCLES_graph_classification_all.sh # run CYCLES dataset for 100k params
 
 bash scripts/TU/script_main_TUs_graph_classification_100k_seed1.sh # run TU datasets for 100k params on seed1
 bash scripts/TU/script_main_TUs_graph_classification_100k_seed2.sh # run TU datasets for 100k params on seed2
