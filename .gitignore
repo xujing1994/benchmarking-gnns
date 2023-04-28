@@ -54,5 +54,7 @@ Dataset/
 #configs
 configs/
 
+#runners
+runners/
 scripts/StatisticalResults/cycles.ipynb
 scripts/StatisticalResults/wikics.ipynb
