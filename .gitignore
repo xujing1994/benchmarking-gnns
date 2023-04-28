@@ -51,5 +51,8 @@ data/WikiCS/*.json
 #TUs
 Dataset/
 
+#configs
+configs/
+
 scripts/StatisticalResults/cycles.ipynb
 scripts/StatisticalResults/wikics.ipynb
