@@ -105,7 +105,7 @@ def train_val_pipeline(MODEL_NAME, DATASET_NAME, params, net_params, dirs, args)
     trainset, valset, testset = dataset.train, dataset.val, dataset.test
     
     root_log_dir, root_ckpt_dir, write_file_name, write_config_file = dirs
-    device = net_params['device']
+    device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
     
     # Write the network and optimization hyper-parameters in folder config/
     with open(write_config_file + '.txt', 'w') as f:
@@ -122,8 +122,6 @@ def train_val_pipeline(MODEL_NAME, DATASET_NAME, params, net_params, dirs, args)
             random.seed(params['seed'])
             np.random.seed(params['seed'])
             torch.manual_seed(params['seed'])
-            if device.type == 'cuda':
-                torch.cuda.manual_seed(params['seed'])
 
             print("RUN NUMBER: ", split_number)
             trainset, valset, testset = dataset.train[split_number], dataset.val[split_number], dataset.test[split_number]
@@ -272,7 +270,7 @@ def main():
     
     parser = argparse.ArgumentParser()
     parser.add_argument('--config', help="Please give a config.json file with training/model/data/param details")
-    parser.add_argument('--gpu_id', help="Please give a value for gpu id")
+    parser.add_argument('--gpu_id', help="Please give a value for gpu id", default='0')
     parser.add_argument('--model', help="Please give a value for model name")
     parser.add_argument('--dataset', help="Please give a value for dataset name")
     parser.add_argument('--out_dir', help="Please give a value for out_dir")
