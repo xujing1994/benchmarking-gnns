@@ -328,7 +328,7 @@ def main():
         DATASET_NAME = args.dataset
     else:
         DATASET_NAME = config['dataset']
-    dataset = LoadData(DATASET_NAME, args)
+    dataset = TUsDataset(DATASET_NAME, args)
     if args.out_dir is not None:
         out_dir = args.out_dir
     else:
