@@ -48,7 +48,8 @@ data/graphtheoryprop/*.pkl
 #WikiCS
 data/WikiCS/*.json
 
-
+#TUs
+Dataset/
 
 scripts/StatisticalResults/cycles.ipynb
 scripts/StatisticalResults/wikics.ipynb
