@@ -85,7 +85,7 @@ def view_model_param(MODEL_NAME, net_params):
     TRAINING CODE
 """
 
-def train_val_pipeline(MODEL_NAME, DATASET_NAME, params, net_params, dirs):
+def train_val_pipeline(MODEL_NAME, DATASET_NAME, params, net_params, dirs, args):
     avg_test_acc = []
     avg_train_acc = []
     avg_convergence_epochs = []
@@ -93,7 +93,7 @@ def train_val_pipeline(MODEL_NAME, DATASET_NAME, params, net_params, dirs):
     t0 = time.time()
     per_epoch_time = []
 
-    dataset = LoadData(DATASET_NAME)
+    dataset = LoadData(DATASET_NAME, args)
     
     if MODEL_NAME in ['GCN', 'GAT']:
         if net_params['self_loop']:
@@ -111,7 +111,7 @@ def train_val_pipeline(MODEL_NAME, DATASET_NAME, params, net_params, dirs):
     
     # At any point you can hit Ctrl + C to break out of training early.
     try:
-        for split_number in range(1):
+        for split_number in range(2):
             t0_split = time.time()
             log_dir = os.path.join(root_log_dir, "RUN_" + str(split_number))
             writer = SummaryWriter(log_dir=log_dir)
@@ -306,6 +306,8 @@ def main():
     parser.add_argument('--cat', help="Please give a value for cat")
     parser.add_argument('--self_loop', help="Please give a value for self_loop")
     parser.add_argument('--max_time', help="Please give a value for max_time")
+    parser.add_argument('--datadir', help='path to save the downloaded dataset', default='None')
+    parser.add_argument('--processed_datadir', help='path to save the processed dataset', default='None')
     args = parser.parse_args()
     with open(args.config) as f:
         config = json.load(f)
@@ -324,7 +326,7 @@ def main():
         DATASET_NAME = args.dataset
     else:
         DATASET_NAME = config['dataset']
-    dataset = LoadData(DATASET_NAME)
+    dataset = LoadData(DATASET_NAME, args)
     if args.out_dir is not None:
         out_dir = args.out_dir
     else:
@@ -432,7 +434,7 @@ def main():
         os.makedirs(out_dir + 'configs')
 
     net_params['total_param'] = view_model_param(MODEL_NAME, net_params)
-    train_val_pipeline(MODEL_NAME, DATASET_NAME, params, net_params, dirs)
+    train_val_pipeline(MODEL_NAME, DATASET_NAME, params, net_params, dirs, args)
 
     
 

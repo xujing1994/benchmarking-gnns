@@ -13,7 +13,7 @@ from data.graphtheoryprop import GraphTheoryPropDataset
 from data.WikiCS import WikiCSDataset
 
 
-def LoadData(DATASET_NAME):
+def LoadData(DATASET_NAME, args):
     """
         This function is called in the main.py file 
         returns:
@@ -30,7 +30,7 @@ def LoadData(DATASET_NAME):
     # handling for the TU Datasets
     TU_DATASETS = ['ENZYMES', 'DD', 'PROTEINS_full']
     if DATASET_NAME in TU_DATASETS: 
-        return TUsDataset(DATASET_NAME)
+        return TUsDataset(DATASET_NAME, args)
 
     # handling for SBM datasets
     SBM_DATASETS = ['SBM_CLUSTER', 'SBM_PATTERN']
