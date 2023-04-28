@@ -42,7 +42,8 @@ class DotDict(dict):
 """
 
 from nets.TUs_graph_classification.load_net import gnn_model # import GNNs
-from data.data import LoadData # import dataset
+# from data.data import LoadData # import dataset
+from data.TUs import TUsDataset
 
 
 
@@ -93,7 +94,8 @@ def train_val_pipeline(MODEL_NAME, DATASET_NAME, params, net_params, dirs, args)
     t0 = time.time()
     per_epoch_time = []
 
-    dataset = LoadData(DATASET_NAME, args)
+    # dataset = LoadData(DATASET_NAME, args)
+    dataset = TUsDataset(DATASET_NAME, args)
     
     if MODEL_NAME in ['GCN', 'GAT']:
         if net_params['self_loop']:
